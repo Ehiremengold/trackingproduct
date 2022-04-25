@@ -179,14 +179,10 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'media'),
 ]
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'assets')
-# C:\Users\THINKPAD\Desktop\deploy\assets
+STATIC_ROOT = '/assets/'
 MEDIA_URL = '/media/'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-
-
-STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 LOGIN_URL = 'login'
 
