@@ -13,7 +13,8 @@ https://docs.djangoproject.com/en/3.0/ref/settings/
 import os
 import cloudinary
 import cloudinary_storage
-
+from dotenv import load_dotenv
+load_dotenv()
 '''
 import django_heroku
 import dj_database_url
@@ -28,7 +29,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = '%^dq!e#0mw-nw40mj*^*mc(y2u0pfeqg%sn&399cx2yco8o=!i'
+SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -70,9 +71,9 @@ MIDDLEWARE = [
 ]
 
 CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': "da6ku4cpm",
-    'API_KEY': 397744514268743,
-    'API_SECRET': 'O1PMz10_GbBtUA2NIWotmHln15k',
+    'CLOUD_NAME': os.getenv('CLOUDINARY_CLOUD_NAME'),
+    'API_KEY': os.getenv('CLOUDINARY_API_KEY'),
+    'API_SECRET': os.getenv('CLOUDINARY_API_SECRET'),
 }
 
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
@@ -101,35 +102,36 @@ WSGI_APPLICATION = 'tracking.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql',
+#         'NAME': 'tracking',
+#         'USER': 'postgres',
+#         'PASSWORD': '67722',
+#         'HOST': 'localhost',
+#         'PORT': 5432,
+#     }
+# }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': os.getenv('AWS_DB_NAME'),
+#         'USER': os.getenv('AWS_DB_USER'),
+#         'PASSWORD': os.getenv('AWS_DB_PASSWORD'),
+#         'HOST': os.getenv('AWS_DB_HOST'),
+#         'PORT':os.getenv('AWS_DB_PORT'),
+#     }
+# }
+
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'tracking',
-        'USER': 'postgres',
-        'PASSWORD': '67722',
-        'HOST': 'localhost',
-        'PORT': 5432,
-    }
-}
-
-"""DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'dekg3ursstmb9d',
-        'USER': 'hpashbmtcvlmyb',
-        'PASSWORD': '050134aa41dfc5d6ae2251a242154105af7e87ee62d5dc669b973a95e314b417',
-        'HOST': 'ec2-3-221-243-122.compute-1.amazonaws.com',
-        'PORT': 5432,
-    }
-}
-"""
-
-"""DATABASES = {
-    'default': {
         'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': 'mydatabase',
+        'NAME': 'dbsqlite3',
     }
-}"""
+}
+
 #postgres://hpashbmtcvlmyb:050134aa41dfc5d6ae2251a242154105af7e87ee62d5dc669b973a95e314b417@ec2-3-221-243-122.compute-1.amazonaws.com:5432/dekg3ursstmb9d
 # Password validation
 # https://docs.djangoproject.com/en/3.0/ref/settings/#auth-password-validators
